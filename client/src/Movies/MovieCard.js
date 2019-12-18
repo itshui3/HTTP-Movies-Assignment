@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
 const MovieCard = props => {
-  const { title, director, metascore, stars } = props.movie;
+  console.log(props.movie)
+  const { title, director, metascore, stars } = props.movie
   return (
     <div className="movie-card">
       <h2>{title}</h2>
@@ -22,4 +24,5 @@ const MovieCard = props => {
   );
 };
 
-export default MovieCard;
+
+export default MovieCard

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { NavLink, Link } from 'react-router-dom';
-export default class SavedList extends Component {
+
+class SavedList extends Component {
   constructor(props) {
     super(props);
   }
@@ -27,3 +29,11 @@ export default class SavedList extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    
+  }
+}
+
+export default connect(mapStateToProps)(SavedList)
