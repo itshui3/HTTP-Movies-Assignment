@@ -66,7 +66,7 @@ export const moviesReducer = (state = initialState, { type, payload }) => {
     case SET_MOVIE:
       return {
         ...state,
-        setMovie: state.movies[Number(payload)]
+        setMovie: payload
       }
 
     default:

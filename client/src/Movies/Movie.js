@@ -15,7 +15,7 @@ class Movie extends React.Component {
   }
 
   componentDidMount() {
-    this.props.setMovie(this.props.match.params.id)
+    this.fetchMovie(this.props.match.params.id)
   }
 
   componentWillReceiveProps(newProps) {
@@ -43,13 +43,18 @@ class Movie extends React.Component {
 
   render() {
     console.log(this.props.movies)
-    if (!this.props.setMovie) {
+    if (!this.props.movies) {
       return <div>Loading movie information...</div>;
     }
 
+    const matchId = parseInt(this.props.match.params.id)
+    const movie = this.props.movies.find(movie => {
+      return movie.id === matchId
+    })
+    console.log(matchId)
     return (
       <div className="save-wrapper">
-        <MovieCard movie={this.props.setMovie} />
+        <MovieCard movie={movie} />
         <div className="save-button" onClick={this.saveMovie}>
           Save
         </div>
@@ -66,8 +71,7 @@ class Movie extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    movies: state.moviesReducer.movies,
-    setMovie: state.moviesReducer.setMovie
+    movies: state.moviesReducer.movies
   }
 }
 

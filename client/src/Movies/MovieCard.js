@@ -5,23 +5,19 @@ import { connect } from 'react-redux'
 
 const MovieCard = props => {
   const history = useHistory()
-  const [movie, setMovie] = useState({})
-  const { title, director, metascore, stars } = movie
+  const { title, director, metascore, stars } = props.movie
 
-
-  console.log(history.location.pathname)
+  console.log(props.movies)
+  // if it's at base url it is '/'
+  // if it's at a selection, it is '/movies/:id'
 
   const path = history.location.pathname.toString()
-  useEffect(() => {
-    Axios.get(`http://localhost:5000/api${path}`)
-      .then( res => {
-        console.log(res)
-        setMovie(res.data)
-      })
-      .catch( err => {
-        console.log(err)
-      })
-  }, [])
+
+  // const title = ''
+  // const director = ''
+  // const metascore = ''
+  // const stars = []
+
   return (
     <div className="movie-card">
       <h2>{title}</h2>
@@ -39,12 +35,12 @@ const MovieCard = props => {
         </div>
       ))}
     </div>
-  );
+  )
 };
 
 const mapStateToProps = state => {
   return {
-
+    movies: state.moviesReducer.movies
   }
 }
 
