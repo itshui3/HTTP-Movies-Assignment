@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { NavLink, Link } from 'react-router-dom';
-export default class SavedList extends Component {
+
+class SavedList extends Component {
   constructor(props) {
     super(props);
   }
@@ -9,7 +11,7 @@ export default class SavedList extends Component {
     return (
       <div className="saved-list">
         <h3>Saved Movies:</h3>
-        {this.props.list.map(movie => {
+        {this.props.savedMovies.map(movie => {
           return (
             <NavLink
               to={`/movies/${movie.id}`}
@@ -27,3 +29,11 @@ export default class SavedList extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    savedMovies: state.moviesReducer.savedMovies
+  }
+}
+
+export default connect(mapStateToProps)(SavedList)

@@ -1,28 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 import SavedList from "./Movies/SavedList";
 import MovieList from "./Movies/MovieList";
 import Movie from "./Movies/Movie";
+import MovieForm from './Movies/MovieForm'
 
-const App = () => {
-  const [savedList, setSavedList] = useState([]);
-
-  const addToSavedList = movie => {
-    setSavedList([...savedList, movie]);
-  };
-
+const App = (props) => {
   return (
     <>
-      <SavedList list={savedList} />
+      <SavedList />
+
       <Route exact path="/" component={MovieList} />
+
       <Route
         path="/movies/:id"
-        render={props => {
-          return <Movie {...props} addToSavedList={addToSavedList} />;
-        }}
+        component={Movie}
       />
+
+      <Route
+        path='/update-movie/:id'
+        component={MovieForm}
+      />
+
     </>
   );
 };
 
-export default App;
+export default App
