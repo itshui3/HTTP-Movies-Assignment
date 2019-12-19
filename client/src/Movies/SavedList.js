@@ -11,7 +11,7 @@ class SavedList extends Component {
     return (
       <div className="saved-list">
         <h3>Saved Movies:</h3>
-        {this.props.list.map(movie => {
+        {this.props.savedMovies.map(movie => {
           return (
             <NavLink
               to={`/movies/${movie.id}`}
@@ -32,7 +32,7 @@ class SavedList extends Component {
 
 const mapStateToProps = state => {
   return {
-    
+    savedMovies: state.moviesReducer.savedMovies
   }
 }
 

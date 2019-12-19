@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom'
+import Axios from 'axios';
 import { connect } from 'react-redux'
 
 const MovieCard = props => {
-  console.log(props.movie)
-  const { title, director, metascore, stars } = props.movie
+  const history = useHistory()
+  const [movie, setMovie] = useState({})
+  const { title, director, metascore, stars } = movie
+
+
+  console.log(history.location.pathname)
+
+  const path = history.location.pathname.toString()
+  useEffect(() => {
+    Axios.get(`http://localhost:5000/api${path}`)
+      .then( res => {
+        console.log(res)
+        setMovie(res.data)
+      })
+      .catch( err => {
+        console.log(err)
+      })
+  }, [])
   return (
     <div className="movie-card">
       <h2>{title}</h2>
@@ -15,8 +33,8 @@ const MovieCard = props => {
       </div>
       <h3>Actors</h3>
 
-      {stars.map(star => (
-        <div key={star} className="movie-star">
+      {stars && stars.map((star, index) => (
+        <div key={index} className="movie-star">
           {star}
         </div>
       ))}
@@ -24,5 +42,11 @@ const MovieCard = props => {
   );
 };
 
+const mapStateToProps = state => {
+  return {
 
-export default MovieCard
+  }
+}
+
+
+export default connect(mapStateToProps)(MovieCard)

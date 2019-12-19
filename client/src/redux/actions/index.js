@@ -9,7 +9,8 @@ import {
   SET_MOVIE,
   getMovies,
   putUpdatedMovie,
-  setMovie
+  setMovie,
+  addSaved
 
 } from './movieActions'
 
@@ -24,5 +25,6 @@ export {
   SET_MOVIE,
   getMovies,
   putUpdatedMovie,
-  setMovie
+  setMovie,
+  addSaved
 }

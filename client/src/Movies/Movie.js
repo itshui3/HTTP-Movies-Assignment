@@ -3,7 +3,7 @@ import axios from "axios";
 import MovieCard from "./MovieCard";
 // Redux
 import { connect } from 'react-redux'
-import { setMovie } from '../redux/actions'
+import { setMovie, addSaved } from '../redux/actions'
 
 
 class Movie extends React.Component {
@@ -37,6 +37,10 @@ class Movie extends React.Component {
       .catch(err => console.log(err.response));
   };
 
+  saveMovie = () => {
+    console.log(this.props.movies[this.props.match.params.id])
+  }
+
   render() {
     console.log(this.props.movies)
     if (!this.props.setMovie) {
@@ -68,5 +72,6 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {
-  setMovie
+  setMovie,
+  addSaved
 })(Movie)
