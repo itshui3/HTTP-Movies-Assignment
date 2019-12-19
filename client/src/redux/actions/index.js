@@ -7,10 +7,14 @@ import {
   UPDATED_MOVIE,
   FAILED_UPDATE_MOVIE,
   SET_MOVIE,
+  DELETION_ERROR,
+  DELETING_MOVIE,
+
   getMovies,
   putUpdatedMovie,
   setMovie,
-  addSaved
+  addSaved,
+  deleteMovie
 
 } from './movieActions'
 
@@ -23,8 +27,11 @@ export {
   UPDATED_MOVIE,
   FAILED_UPDATE_MOVIE,
   SET_MOVIE,
+  DELETION_ERROR,
+  DELETING_MOVIE,
   getMovies,
   putUpdatedMovie,
   setMovie,
-  addSaved
+  addSaved,
+  deleteMovie
 }

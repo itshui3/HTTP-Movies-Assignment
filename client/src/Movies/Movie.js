@@ -3,7 +3,7 @@ import axios from "axios";
 import MovieCard from "./MovieCard";
 // Redux
 import { connect } from 'react-redux'
-import { setMovie, addSaved } from '../redux/actions'
+import { setMovie, addSaved, deleteMovie } from '../redux/actions'
 
 
 class Movie extends React.Component {
@@ -40,6 +40,10 @@ class Movie extends React.Component {
   saveMovie = () => {
     console.log(this.props.movies[this.props.match.params.id])
   }
+  deleteMovie = () => {
+    this.props.deleteMovie(this.props.match.params.id)
+    this.props.history.push(`/`)
+  }
 
   render() {
     console.log(this.props.movies)
@@ -64,6 +68,12 @@ class Movie extends React.Component {
         >
           Edit
         </button>
+        <button 
+          className="delete-button" 
+          onClick={this.deleteMovie}
+        >
+          Delete
+        </button>
       </div>
     );
   }
@@ -77,5 +87,6 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   setMovie,
-  addSaved
+  addSaved,
+  deleteMovie
 })(Movie)
